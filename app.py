@@ -2,7 +2,7 @@ import pickle
 import streamlit as st
 import numpy as np
 
-@st.cache
+@st.cache_data
 def load_model():
     with open('breast_model.pkl', 'rb') as file:
         model = pickle.load(file)
@@ -52,6 +52,7 @@ input_features = np.array([[
     worst_compactness, worst_concavity, worst_concave_points, worst_symmetry, worst_fractal_dimension
 ]])
 if st.button("Predict"):
+    print(model)
     value = model.predict(input_features)
     if value == [1]:
         st.write("Dependent on the available features the output is malignant")
